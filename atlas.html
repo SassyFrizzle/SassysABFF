@@ -262,6 +262,10 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .empty-state{text-align:center;padding:50px 20px;color:var(--txd);}
 .empty-icon{font-size:36px;margin-bottom:12px;opacity:0.3;}
 .empty-text{font-family:var(--f);font-size:13px;}
+
+@media all and (display-mode: standalone) {
+  .content { padding-top: calc(140px + env(safe-area-inset-top, 0px)); }
+}
 </style>
 </head>
 <body>
