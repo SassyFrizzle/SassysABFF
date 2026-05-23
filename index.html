@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Film Festival Atlas">
@@ -24,27 +24,12 @@
   --fs:'Instrument Serif',Georgia,serif;
   --r:14px;--rs:8px;
 }
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 html{scroll-behavior:smooth;background:var(--bg);}
-body{
-  font-family:var(--f);background:var(--bg);color:var(--tx);
-  min-height:100vh;font-size:14px;line-height:1.55;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  /* Pull to refresh fix */
-  overscroll-behavior-y:none;
-}
-
-/* TOP ACCENT BAR */
-.top-bar{
-  position:fixed;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(to right,var(--pk),var(--tl),var(--gd));
-  z-index:9999;
-}
-
+body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none;}
+.top-bar{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--pk),var(--tl),var(--gd));z-index:9999;}
 .bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
 .bg-layer img{width:100%;height:100%;object-fit:cover;opacity:0.12;filter:blur(3px);}
-
-/* HERO */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
 .hero-photo{position:absolute;inset:0;}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
@@ -61,58 +46,25 @@ body{
 .hero-msg{background:rgba(10,13,15,0.65);border:1px solid rgba(255,255,255,0.12);border-radius:var(--r);padding:18px 20px;margin-bottom:24px;backdrop-filter:blur(12px);animation:fadeUp 0.6s 0.2s ease both;}
 .hero-msg-txt{font-family:var(--fs);font-style:italic;font-size:15px;color:white;line-height:1.75;margin-bottom:10px;text-shadow:0 1px 10px rgba(0,0,0,0.9);}
 .hero-msg-sig{font-family:var(--f);font-size:11px;font-weight:700;color:var(--pk);letter-spacing:0.06em;}
-
-/* CTA */
 .cta-wrap{display:flex;flex-direction:column;gap:10px;animation:fadeUp 0.6s 0.3s ease both;}
-.btn-primary{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:var(--pk);color:white;border:none;border-radius:var(--r);
-  padding:17px 24px;font-family:var(--f);font-size:14px;font-weight:800;
-  text-decoration:none;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;
-  box-shadow:0 4px 24px rgba(255,59,107,0.4);
-  transition:transform 0.12s,opacity 0.12s;
-  -webkit-user-select:none;user-select:none;
-}
+.btn-primary{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--pk);color:white;border:none;border-radius:var(--r);padding:17px 24px;font-family:var(--f);font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;box-shadow:0 4px 24px rgba(255,59,107,0.4);transition:transform 0.12s,opacity 0.12s;}
 .btn-primary:active{transform:scale(0.96);opacity:0.9;}
-
-.btn-install{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  background:rgba(255,255,255,0.06);color:var(--tx);
-  border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);
-  padding:13px 24px;font-family:var(--f);font-size:12px;font-weight:700;
-  cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;
-  transition:transform 0.12s,background 0.15s;
-  -webkit-user-select:none;user-select:none;
-}
+.btn-install{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,0.06);color:var(--tx);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);padding:13px 24px;font-family:var(--f);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:transform 0.12s,background 0.15s;}
 .btn-install:active{transform:scale(0.96);background:rgba(255,255,255,0.1);}
 .btn-install-dot{width:8px;height:8px;border-radius:50%;background:var(--tl);flex-shrink:0;}
-
-/* CONTENT */
 .content{position:relative;z-index:1;padding:0 16px 100px;max-width:600px;margin:0 auto;}
-
-/* SECTION CARDS */
-.section-card{
-  background:var(--s2);border:1px solid var(--b);border-radius:var(--r);
-  margin-bottom:10px;overflow:hidden;
-  transition:transform 0.12s;
-}
-.section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 18px;cursor:pointer;user-select:none;
-  -webkit-user-select:none;
-}
+.section-card{background:var(--s2);border:1px solid var(--b);border-radius:var(--r);margin-bottom:10px;overflow:hidden;}
+.section-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;cursor:pointer;user-select:none;-webkit-user-select:none;}
 .section-head:active{background:rgba(255,255,255,0.03);}
 .section-head-left{display:flex;align-items:center;gap:12px;}
 .section-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .si-pk{background:var(--pk2);border:1px solid rgba(255,59,107,0.2);}
 .si-tl{background:var(--tl2);border:1px solid rgba(0,229,204,0.2);}
-.si-gd{background:var(--gd2);border:1px solid rgba(255,184,48,0.2);}
 .si-gr{background:var(--gr2);border:1px solid rgba(46,204,113,0.2);}
 .si-rd{background:rgba(255,59,59,0.1);border:1px solid rgba(255,59,59,0.2);}
 .section-dot{width:10px;height:10px;border-radius:50%;}
 .dot-pk{background:var(--pk);}
 .dot-tl{background:var(--tl);}
-.dot-gd{background:var(--gd);}
 .dot-gr{background:var(--gr);}
 .dot-rd{background:#FF3B3B;}
 .section-head-title{font-family:var(--f);font-weight:700;font-size:14px;color:var(--tx);text-transform:uppercase;letter-spacing:0.04em;}
@@ -121,57 +73,36 @@ body{
 .section-arr.open{transform:rotate(180deg);}
 .section-body{display:none;padding:0 18px 18px;border-top:1px solid var(--b);}
 .section-body.open{display:block;}
-
-/* FEATURES */
 .features-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:14px;}
-.feat{background:var(--s3);border-radius:var(--rs);padding:12px 14px;border:1px solid var(--b);transition:transform 0.12s;}
-.feat:active{transform:scale(0.97);}
+.feat{background:var(--s3);border-radius:var(--rs);padding:12px 14px;border:1px solid var(--b);}
 .feat-pill{display:inline-flex;align-items:center;gap:5px;margin-bottom:6px;}
 .feat-pill-dot{width:6px;height:6px;border-radius:50%;}
 .feat-name{font-family:var(--f);font-size:12px;font-weight:700;color:var(--tx);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;}
 .feat-desc{font-family:var(--f);font-size:11px;color:var(--txm);line-height:1.5;}
-
-/* STEPS */
 .steps{padding-top:14px;display:flex;flex-direction:column;gap:10px;}
 .step{display:flex;gap:12px;align-items:flex-start;}
 .step-n{width:24px;height:24px;border-radius:50%;background:var(--pk);color:white;font-size:11px;font-weight:800;font-family:var(--f);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .step-txt{font-family:var(--f);font-size:13px;color:var(--txm);line-height:1.6;}
 .step-txt strong{color:var(--tx);font-weight:700;}
-
-/* HOME SCREEN */
-.hs-platform{margin-top:14px;}
-.hs-label{font-family:var(--f);font-size:10px;font-weight:700;color:var(--tl);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
-.hs-steps{display:flex;flex-direction:column;gap:8px;}
-.hs-step{display:flex;align-items:flex-start;gap:10px;background:var(--s3);border-radius:var(--rs);padding:10px 12px;}
-.hs-num{width:20px;height:20px;border-radius:50%;background:var(--tl2);border:1px solid rgba(0,229,204,0.3);color:var(--tl);font-size:10px;font-weight:800;font-family:var(--f);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.hs-txt{font-family:var(--f);font-size:12px;color:var(--txm);line-height:1.5;}
-.hs-txt strong{color:var(--tx);}
-.hs-divider{height:1px;background:var(--b);margin:14px 0;}
-
-/* SUPPORT */
 .support-body{padding-top:14px;}
 .support-creator-line{font-family:var(--fs);font-style:italic;font-size:13px;color:var(--txm);line-height:1.7;margin-bottom:16px;padding:14px 16px;background:var(--s3);border-radius:var(--rs);border-left:2px solid var(--pk);}
 .support-methods{display:flex;flex-direction:column;gap:8px;}
-.support-row{display:flex;align-items:center;gap:12px;background:var(--s3);border-radius:var(--rs);padding:12px 14px;text-decoration:none;border:1px solid var(--b);transition:transform 0.12s,border-color 0.15s;}
-.support-row:active{transform:scale(0.97);border-color:var(--pk);}
+.support-row{display:flex;align-items:center;gap:12px;background:var(--s3);border-radius:var(--rs);padding:12px 14px;text-decoration:none;border:1px solid var(--b);transition:transform 0.12s;}
+.support-row:active{transform:scale(0.97);}
 .support-row-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .support-row-info{flex:1;}
 .support-row-name{font-family:var(--f);font-size:12px;font-weight:700;color:var(--tx);text-transform:uppercase;letter-spacing:0.04em;}
 .support-row-handle{font-family:var(--f);font-size:11px;color:var(--txm);margin-top:1px;}
 .support-row-arr{font-size:14px;color:var(--txd);}
-
-/* FEEDBACK */
 .feedback-body{padding-top:14px;}
 .feedback-txt{font-family:var(--f);font-size:13px;color:var(--txm);line-height:1.7;margin-bottom:14px;}
-.btn-feedback{display:flex;align-items:center;justify-content:space-between;background:var(--s3);border:1px solid var(--bm);border-radius:var(--r);padding:14px 16px;font-family:var(--f);font-size:13px;font-weight:700;color:var(--tx);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;width:100%;transition:transform 0.12s,border-color 0.15s;}
-.btn-feedback:active{transform:scale(0.97);border-color:var(--pk);color:var(--pk);}
-
-/* INSTALL MODAL */
+.btn-feedback{display:flex;align-items:center;justify-content:space-between;background:var(--s3);border:1px solid var(--bm);border-radius:var(--r);padding:14px 16px;font-family:var(--f);font-size:13px;font-weight:700;color:var(--tx);text-decoration:none;letter-spacing:0.04em;text-transform:uppercase;width:100%;transition:transform 0.12s;}
+.btn-feedback:active{transform:scale(0.97);}
 .install-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:2000;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
 .install-backdrop.open{display:flex;}
 .install-modal{background:var(--s1);border-radius:20px 20px 0 0;padding:28px 24px calc(40px + env(safe-area-inset-bottom,0px));width:100%;max-width:600px;border-top:1px solid var(--bm);}
 .install-modal-title{font-family:var(--f);font-weight:800;font-size:20px;color:var(--tx);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;}
-.install-modal-sub{font-family:var(--f);font-size:12px;color:var(--txm);margin-bottom:20px;}
+.install-modal-sub{font-family:var(--f);font-size:12px;color:var(--txm);margin-bottom:16px;}
 .install-platform-label{font-family:var(--f);font-size:10px;font-weight:700;color:var(--tl);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;}
 .install-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
 .install-step{display:flex;align-items:flex-start;gap:10px;background:var(--s2);border-radius:var(--rs);padding:10px 12px;}
@@ -179,13 +110,10 @@ body{
 .install-txt{font-family:var(--f);font-size:12px;color:var(--txm);line-height:1.5;}
 .install-txt strong{color:var(--tx);}
 .btn-install-close{width:100%;background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:14px;font-family:var(--f);font-size:13px;font-weight:700;color:var(--txm);cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;}
-
-/* FOOTER */
 .footer{position:relative;z-index:1;padding:24px 24px calc(24px + env(safe-area-inset-bottom,0px));text-align:center;border-top:1px solid var(--b);margin-top:8px;}
 .footer-brand{font-family:var(--fs);font-style:italic;font-size:13px;color:var(--txm);margin-bottom:8px;line-height:1.6;}
 .footer-brand span{color:var(--pk);font-style:normal;font-family:var(--f);font-weight:700;}
 .footer-disc{font-family:var(--f);font-size:10px;color:var(--txd);line-height:1.7;max-width:480px;margin:0 auto;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 </style>
 </head>
@@ -206,13 +134,13 @@ body{
     </div>
     <div class="hero-body">
       <div class="hero-title">Film<br>Festival<br><span>Atlas</span></div>
-      <div class="hero-edition">ABFF 2026 &nbsp;·&nbsp; Miami Beach &nbsp;·&nbsp; May 27–31</div>
+      <div class="hero-edition">ABFF 2026 &nbsp;&middot;&nbsp; Miami Beach &nbsp;&middot;&nbsp; May 27&ndash;31</div>
       <div class="hero-msg">
-        <div class="hero-msg-txt">Hey, I'm Sassy — a multihyphenate creative who needed a better way to move through a film festival. So I built one. Use this to plan your schedule, map your looks, and never forget the name of the person you just met. If you see me in Miami, come say hi.</div>
-        <div class="hero-msg-sig">— Nicole "Sassy" Harrison &nbsp;·&nbsp; @sassyfrizzle</div>
+        <div class="hero-msg-txt">Hey, I'm Sassy &mdash; a multihyphenate creative who needed a better way to move through a film festival. So I built one. Use this to plan your schedule, map your looks, and never forget the name of the person you just met. If you see me in Miami, come say hi.</div>
+        <div class="hero-msg-sig">&mdash; Nicole &ldquo;Sassy&rdquo; Harrison &nbsp;&middot;&nbsp; @sassyfrizzle</div>
       </div>
       <div class="cta-wrap">
-        <a href="atlas.html" class="btn-primary">Open the Atlas &nbsp;→</a>
+        <a href="atlas.html" class="btn-primary">Open the Atlas &nbsp;&rarr;</a>
         <button class="btn-install" onclick="handleInstall()">
           <div class="btn-install-dot"></div>
           Add to Home Screen
@@ -228,7 +156,7 @@ body{
     <div class="section-head" onclick="toggleSection(this)">
       <div class="section-head-left">
         <div class="section-icon si-pk"><div class="section-dot dot-pk"></div></div>
-        <div><div class="section-head-title">What's inside</div><div class="section-head-sub">Six tools in one app</div></div>
+        <div><div class="section-head-title">What&rsquo;s inside</div><div class="section-head-sub">Six tools in one app</div></div>
       </div>
       <div class="section-arr">&#8964;</div>
     </div>
@@ -236,9 +164,9 @@ body{
       <div class="features-grid">
         <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--tl)"></div></div><div class="feat-name">Schedule</div><div class="feat-desc">Full ABFF 2026 schedule. Every event, every venue, with directions built in.</div></div>
         <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--pk)"></div></div><div class="feat-name">My Atlas</div><div class="feat-desc">Your personal itinerary. Add events and they live here organized by day.</div></div>
-        <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--gd)"></div></div><div class="feat-name">Connections</div><div class="feat-desc">Log everyone you meet — photo, role, contact info. Save directly to your phone's Contacts.</div></div>
+        <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--gd)"></div></div><div class="feat-name">Connections</div><div class="feat-desc">Log everyone you meet &mdash; photo, role, contact info. Save directly to your phone&rsquo;s Contacts.</div></div>
         <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--pk)"></div></div><div class="feat-name">Looks</div><div class="feat-desc">Plan your outfits, tag them to events. They appear in your Atlas alongside your schedule.</div></div>
-        <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--tl)"></div></div><div class="feat-name">Notes</div><div class="feat-desc">A scratchpad for anything — follow-ups, thoughts, the bar that was great on Friday.</div></div>
+        <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--tl)"></div></div><div class="feat-name">Notes</div><div class="feat-desc">A scratchpad for anything &mdash; follow-ups, thoughts, the bar that was great on Friday.</div></div>
         <div class="feat"><div class="feat-pill"><div class="feat-pill-dot" style="background:var(--gd)"></div></div><div class="feat-name">Packing List</div><div class="feat-desc">Add your own items plus curated suggestions for a Miami film festival week.</div></div>
       </div>
     </div>
@@ -254,11 +182,11 @@ body{
     </div>
     <div class="section-body">
       <div class="steps">
-        <div class="step"><div class="step-n">1</div><div class="step-txt"><strong>Enter your name</strong> — that's all you need to get started. PIN is optional but keeps your atlas private.</div></div>
-        <div class="step"><div class="step-n">2</div><div class="step-txt"><strong>Browse the Schedule</strong> — tap any day to see all events, panels, and screenings. Hit "Add to my atlas" on anything you want to attend.</div></div>
-        <div class="step"><div class="step-n">3</div><div class="step-txt"><strong>Check My Atlas</strong> — your picks show up here organized by day. Add your own private events too — dinners, parties, meetings.</div></div>
-        <div class="step"><div class="step-n">4</div><div class="step-txt"><strong>Log connections as you meet people</strong> — tap Connect, add their name, photo, and handle. Save directly to your phone's Contacts with one tap.</div></div>
-        <div class="step"><div class="step-n">5</div><div class="step-txt"><strong>Plan your looks in Get Ready</strong> — tag each look to a specific event and they appear in your Atlas alongside your schedule.</div></div>
+        <div class="step"><div class="step-n">1</div><div class="step-txt"><strong>Enter your name</strong> &mdash; that&rsquo;s all you need to get started. PIN is optional but keeps your atlas private.</div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-txt"><strong>Browse the Schedule</strong> &mdash; tap any day to see all events, panels, and screenings. Hit &ldquo;Add to my atlas&rdquo; on anything you want to attend.</div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-txt"><strong>Check My Atlas</strong> &mdash; your picks show up here organized by day. Add your own private events too &mdash; dinners, parties, meetings.</div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-txt"><strong>Log connections as you meet people</strong> &mdash; tap Connect, add their name, photo, and handle. Save directly to your phone&rsquo;s Contacts with one tap.</div></div>
+        <div class="step"><div class="step-n">5</div><div class="step-txt"><strong>Plan your looks in Get Ready</strong> &mdash; tag each look to a specific event and they appear in your Atlas alongside your schedule.</div></div>
       </div>
     </div>
   </div>
@@ -273,7 +201,7 @@ body{
     </div>
     <div class="section-body">
       <div class="support-body">
-        <div class="support-creator-line">Filmmaker. Producer. Creative Director. Builder of random things that needed to exist. — Nicole "Sassy" Harrison (@sassyfrizzle) · 820 Collective</div>
+        <div class="support-creator-line">Filmmaker. Producer. Creative Director. Builder of random things that needed to exist. &mdash; Nicole &ldquo;Sassy&rdquo; Harrison (@sassyfrizzle) &middot; 820 Collective</div>
         <div class="support-methods">
           <a href="https://buymeacoffee.com/thesassyfrizzle" target="_blank" class="support-row">
             <div class="support-row-dot" style="background:var(--pk);"></div>
@@ -281,7 +209,7 @@ body{
               <div class="support-row-name">Buy Me a Coffee</div>
               <div class="support-row-handle">buymeacoffee.com/thesassyfrizzle</div>
             </div>
-            <div class="support-row-arr">→</div>
+            <div class="support-row-arr">&rarr;</div>
           </a>
           <div class="support-row">
             <div class="support-row-dot" style="background:var(--tl);"></div>
@@ -299,19 +227,94 @@ body{
     <div class="section-head" onclick="toggleSection(this)">
       <div class="section-head-left">
         <div class="section-icon si-rd"><div class="section-dot dot-rd"></div></div>
-        <div><div class="section-head-title">Tell Sassy what you think</div><div class="section-head-sub">Feedback helps build what's next</div></div>
+        <div><div class="section-head-title">Tell Sassy what you think</div><div class="section-head-sub">Feedback helps build what&rsquo;s next</div></div>
       </div>
       <div class="section-arr">&#8964;</div>
     </div>
     <div class="section-body">
       <div class="feedback-body">
-        <div class="feedback-txt">What worked? What didn't? Would you use this at another festival? This is a pilot — your feedback shapes version two.</div>
+        <div class="feedback-txt">What worked? What didn&rsquo;t? Would you use this at another festival? This is a pilot &mdash; your feedback shapes version two.</div>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQTWpstV8isXgwsgxk8XjO0UnoVoqMSGv8oW6hyOyHUm0cvw/viewform" target="_blank" class="btn-feedback">
-          Share your feedback
-          <span style="color:var(--pk);">→</span>
+          Share your feedback <span style="color:var(--pk);">&rarr;</span>
         </a>
       </div>
     </div>
   </div>
 
->
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Filmmaker &middot; Producer &middot; Creative Director &middot; Builder of random things that needed to exist.<br><span>Nicole &ldquo;Sassy&rdquo; Harrison</span> &middot; @sassyfrizzle &middot; <span>820 Collective</span></div>
+  <div class="footer-disc">Film Festival Atlas is an independent tool. Not affiliated with, endorsed by, or sponsored by the American Black Film Festival (ABFF), ABFF Ventures LLC, or any partners or sponsors. Always verify event times and locations at abff.com. &copy; 2026 Nicole &ldquo;Sassy&rdquo; Harrison. All rights reserved.</div>
+</div>
+
+<div class="install-backdrop" id="install-modal" onclick="if(event.target===this)closeInstall()">
+  <div class="install-modal">
+    <div class="install-modal-title">Add to Home Screen</div>
+    <div class="install-modal-sub">Use Film Festival Atlas like a native app &mdash; no download required</div>
+    <div class="install-platform-label" id="install-platform-label"></div>
+    <div class="install-steps" id="install-steps"></div>
+    <button class="btn-install-close" onclick="closeInstall()">Got it</button>
+  </div>
+</div>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="THEsassyfrizzle" data-description="Support me on Buy me a coffee!" data-message="" data-color="#FF5F5F" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+<script>
+
+var deferredPrompt = null;
+var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+var isAndroid = /android/i.test(navigator.userAgent);
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function handleInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function() { deferredPrompt = null; });
+  } else {
+    showInstallModal();
+  }
+}
+
+function showInstallModal() {
+  var modal = document.getElementById('install-modal');
+  var label = document.getElementById('install-platform-label');
+  var stepsEl = document.getElementById('install-steps');
+  var iosSteps = [
+    {n:1, txt:'Open <strong>festivalatlas.app</strong> in <strong>Safari</strong> — required, won\'t work in Chrome on iPhone'},
+    {n:2, txt:'Tap the <strong>Share icon</strong> at the bottom — the box with an arrow pointing up'},
+    {n:3, txt:'Scroll down and tap <strong>"Add to Home Screen"</strong>'},
+    {n:4, txt:'Tap <strong>Add</strong> in the top right — the atlas icon appears on your home screen'}
+  ];
+  var androidSteps = [
+    {n:1, txt:'Open <strong>festivalatlas.app</strong> in <strong>Chrome</strong>'},
+    {n:2, txt:'Tap the <strong>three-dot menu</strong> in the top right corner'},
+    {n:3, txt:'Tap <strong>"Add to Home screen"</strong>'},
+    {n:4, txt:'Tap <strong>Add</strong> — done'}
+  ];
+  label.textContent = isIOS ? 'iPhone · Safari' : isAndroid ? 'Android · Chrome' : 'Your device';
+  var steps = isAndroid ? androidSteps : iosSteps;
+  stepsEl.innerHTML = steps.map(function(s) {
+    return '<div class="install-step"><div class="install-n">' + s.n + '</div><div class="install-txt">' + s.txt + '</div></div>';
+  }).join('');
+  modal.classList.add('open');
+}
+
+function closeInstall() {
+  document.getElementById('install-modal').classList.remove('open');
+}
+
+function toggleSection(head) {
+  var body = head.nextElementSibling;
+  var arr = head.querySelector('.section-arr');
+  var open = body.classList.toggle('open');
+  if (arr) arr.classList.toggle('open', open);
+}
+
+</script>
+</body>
+</html>
