@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function() {
+  try {
+    var iosStandalone = window.navigator.standalone === true;
+    var androidStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    var isStandalone = iosStandalone || androidStandalone;
+    // Only redirect if we can CONFIRM it's a browser (standalone is explicitly false on iOS)
+    // navigator.standalone is undefined on Android/desktop, so don't redirect based on that alone
+    var iosBrowser = typeof window.navigator.standalone !== 'undefined' && window.navigator.standalone === false;
+    var androidBrowser = /android/i.test(navigator.userAgent) && !androidStandalone;
+    if (iosBrowser || androidBrowser) {
+      window.location.replace('index.html');
+    }
+  } catch(e) {
+    // If anything fails, just let the app load
+  }
+})();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
