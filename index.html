@@ -149,7 +149,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
         <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border-radius:12px;padding:12px 14px;">
           <div style="width:24px;height:24px;border-radius:50%;background:#FF3B6B;color:white;font-size:11px;font-weight:800;font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-          <div style="font-family:'Syne',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;">Tap the <strong style="color:white;">Share icon</strong> at the bottom of Safari — the box with an arrow pointing up</div>
+          <div style="font-family:'Syne',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;">Tap the <strong style="color:white;">Share icon</strong> at the bottom of Safari &mdash; it looks like this: <span style="display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:2px 8px;font-size:16px;vertical-align:middle;">&#11014;</span></div>
         </div>
         <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(255,255,255,0.05);border-radius:12px;padding:12px 14px;">
           <div style="width:24px;height:24px;border-radius:50%;background:#FF3B6B;color:white;font-size:11px;font-weight:800;font-family:'Syne',sans-serif;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
@@ -160,7 +160,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
           <div style="font-family:'Syne',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.5;">Tap <strong style="color:white;">Add</strong> — then open the app from your home screen</div>
         </div>
       </div>
-      <button onclick="document.getElementById('gate').style.display='none';document.getElementById('main-content').style.display='block';" style="width:100%;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:14px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Continue in browser</button>
+      <button onclick="sessionStorage.setItem('ffa_browser_ok','1');document.getElementById('gate').style.display='none';document.getElementById('main-content').style.display='block';" style="width:100%;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:14px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Continue in browser</button>
       <div style="font-family:'Syne',sans-serif;font-size:11px;color:rgba(255,255,255,0.25);text-align:center;margin-top:8px;">Your data won't sync to the home screen app</div>
     </div>
   </div>
@@ -382,6 +382,9 @@ function toggleSection(head) {
 
   window.addEventListener('load', function() {
     if (isStandalone) return; // already installed, redirect handled above
+
+    // If user already chose to continue in browser this session, skip gate
+    if (sessionStorage.getItem('ffa_browser_ok') === '1') return;
 
     var gate = document.getElementById('gate');
     var main = document.getElementById('main-content');
