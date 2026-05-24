@@ -71,7 +71,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .pin-err{font-size:12px;font-weight:600;color:var(--pk);text-align:center;margin-top:16px;height:18px;font-family:var(--f);}
 .skip{background:none;border:none;color:rgba(255,255,255,0.35);font-size:11px;font-family:var(--f);cursor:pointer;margin-top:16px;display:block;width:100%;text-align:center;text-decoration:underline;}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-#app{display:none;min-height:100vh;padding-bottom:80px;}
+#app{display:none;padding-bottom:80px;}
 .top-accent{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--pk),var(--tl),var(--gd));z-index:9999;-webkit-transform:translateZ(0);transform:translateZ(0);}
 .app-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
 .app-bg img{width:100%;height:100%;object-fit:cover;opacity:0.15;filter:blur(3px);}
@@ -91,7 +91,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .nb-lbl{font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--txd);text-transform:uppercase;font-family:var(--f);}
 .nb.active .nb-lbl{color:var(--pk);}
 .content{padding:16px;max-width:680px;margin:0 auto;position:relative;z-index:1;padding-top:90px;}
-.pane{display:none;min-height:calc(100vh - 120px);}.pane.active{display:block;}
+.pane{display:none;}.pane.active{display:block;}
 .pg-title{font-family:var(--f);font-weight:800;font-size:26px;color:var(--tx);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:2px;margin-top:4px;line-height:1;}
 .pg-sub{font-family:var(--f);font-size:12px;color:var(--txm);margin-bottom:16px;font-weight:500;}
 .back-top-btn{background:none;border:none;color:var(--tl);font-size:12px;font-weight:700;font-family:var(--f);cursor:pointer;letter-spacing:0.04em;text-transform:uppercase;padding:0;margin-bottom:12px;display:block;}
@@ -924,7 +924,7 @@ function fetchWeather(){
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     <span class="nb-lbl">Schedule</span>
   </button>
-  <button class="nb" id="nb-connect" onclick="showPane('connect','nb-connect')">
+  <button class="nb" id="nb-connect" onclick="showPane('connect','nb-connect');renderMyCard();renderConns();">
     <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     <span class="nb-lbl">Connect</span>
   </button>
