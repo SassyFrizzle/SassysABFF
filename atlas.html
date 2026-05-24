@@ -864,7 +864,14 @@ function fetchWeather(){
 <div id="pane-connect" class="pane">
   <div class="pg-title">Connections</div>
   <div class="pg-sub">Everyone you meet at ABFF · tap a card to expand</div>
-  <div id="mycard-slot"></div>
+  <div id="mycard-slot">
+  <div id="mycard-empty" style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:16px;margin-bottom:12px;border-top:2px solid var(--pk);text-align:center;display:block;">
+    <div style="font-family:var(--f);font-weight:700;font-size:13px;color:var(--tx);margin-bottom:6px;">Your Card</div>
+    <div style="font-family:var(--f);font-size:11px;color:var(--txm);margin-bottom:12px;">Set up your profile to share your contact info via QR code &mdash; no app needed on their end.</div>
+    <button id="setup-card-btn" style="background:var(--pk);color:white;border:none;border-radius:var(--rs);padding:10px 20px;font-family:var(--f);font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Set up my card</button>
+  </div>
+  <div id="mycard-filled" style="display:none;"></div>
+</div>
   <button class="add-btn" onclick="openCM(null)">+ Add someone you met</button>
   <div id="conn-list"></div>
   <div id="conn-empty" class="empty-state"><div class="empty-icon">&#9675;</div><div class="empty-text">Your connections show up here.</div></div>
@@ -1554,7 +1561,15 @@ function renderConns(){
   var arr=getConns();var list=document.getElementById('conn-list');var empty=document.getElementById('conn-empty');
   if(!list)return;
   var seed=arr.find(function(c){return c.id==='sassy-seed';});
-  var regular=arr.filter(function(c){return c.id!=='sassy-seed';});
+  var regular=arr.filter(function(c){return c.id!=='sassy-seed';
+  // Setup card button - real DOM element, no innerHTML onclick needed
+  var setupBtn = document.getElementById('setup-card-btn');
+  if (setupBtn) {
+    setupBtn.addEventListener('click', function() {
+      showProfileSetup(false);
+    });
+  }
+});
   empty.style.display=regular.length?'none':'block';
   var renderCard=function(c){
     var isSeed=c.id==='sassy-seed';
@@ -1662,23 +1677,30 @@ function closeQR() {
 
 function renderMyCard() {
   var profile = getProfile();
-  var el = document.getElementById('mycard-slot');
-  if (!el) return;
+  var empty = document.getElementById('mycard-empty');
+  var filled = document.getElementById('mycard-filled');
+  if (!empty || !filled) return;
   if (!profile) {
-    el.innerHTML = '<div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:16px;margin-bottom:12px;border-top:2px solid var(--pk);text-align:center;"><div style="font-family:var(--f);font-weight:700;font-size:13px;color:var(--tx);margin-bottom:6px;">Your Card</div><div style="font-family:var(--f);font-size:11px;color:var(--txm);margin-bottom:12px;">Set up your profile to share your contact info via QR code — no app needed on their end.</div><button onclick="showProfileSetup(false)" style="background:var(--pk);color:white;border:none;border-radius:var(--rs);padding:10px 20px;font-family:var(--f);font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Set up my card</button></div>';
+    empty.style.display = 'block';
+    filled.style.display = 'none';
     return;
   }
+  empty.style.display = 'none';
   var initials = profile.name.split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
   var roleStr = [profile.role, profile.company].filter(Boolean).join(' · ');
-  el.innerHTML = '<div class="mycard-wrap">' +
-    '<div class="mycard-header">' +
-    '<div class="mycard-av">' + initials + '</div>' +
-    '<div><div class="mycard-name">' + profile.name + '</div>' +
-    (roleStr ? '<div class="mycard-role">' + roleStr + '</div>' : '') +
-    '<div class="mycard-badge">My Card</div></div></div>' +
-    '<button class="btn-show-qr" onclick="showQR()">Show My QR Code</button>' +
-    '<button class="btn-edit-profile" onclick="showProfileSetup(true)">Edit profile</button>' +
-    '</div>';
+  var h = '<div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:16px;margin-bottom:12px;border-top:2px solid var(--pk);">';
+  h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">';
+  h += '<div style="width:44px;height:44px;border-radius:50%;background:var(--pk);color:white;font-family:var(--f);font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">'+initials+'</div>';
+  h += '<div><div style="font-family:var(--f);font-weight:700;font-size:14px;color:var(--tx);">'+profile.name+'</div>';
+  if(roleStr) h += '<div style="font-family:var(--f);font-size:11px;color:var(--txm);margin-top:2px;">'+roleStr+'</div>';
+  h += '</div></div>';
+  if(profile.social) h += '<div style="font-family:var(--f);font-size:12px;color:var(--tl);margin-bottom:8px;">@'+profile.social+'</div>';
+  h += '<div style="display:flex;gap:8px;">';
+  h += '<button onclick="showQR()" style="flex:1;background:var(--pk);color:white;border:none;border-radius:var(--rs);padding:10px;font-family:var(--f);font-size:11px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Show My QR Code</button>';
+  h += '<button onclick="showProfileSetup(true)" style="background:var(--s3);color:var(--txm);border:1px solid var(--b);border-radius:var(--rs);padding:10px 14px;font-family:var(--f);font-size:11px;font-weight:700;cursor:pointer;">Edit</button>';
+  h += '</div></div>';
+  filled.innerHTML = h;
+  filled.style.display = 'block';
 }
 
 function toggleFAQ(el){
