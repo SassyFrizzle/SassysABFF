@@ -39,7 +39,7 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 html{scroll-behavior:smooth;background:var(--bg);}
 body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;overscroll-behavior-y:none;}
-#splash{position:fixed;inset:0;z-index:3000;display:none;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+#splash{position:fixed;inset:0;z-index:3000;display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .sp-bg{position:fixed;inset:0;z-index:0;}
 .sp-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 .sp-ov{position:fixed;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1) 0%,rgba(10,13,15,0.7) 38%,rgba(10,13,15,0.97) 100%);z-index:1;}
@@ -54,7 +54,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .sp-pin{display:none;text-align:center;}
 .sp-pin-title{font-family:var(--f);font-weight:700;font-size:22px;color:white;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;}
 .sp-pin-sub{font-family:var(--f);font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px;}
-#lock{position:fixed;inset:0;z-index:2000;display:none;flex-direction:column;}
+#lock{position:fixed;inset:0;z-index:2000;display:none;}
 .lk-bg{position:absolute;inset:0;overflow:hidden;}
 .lk-bg img{width:100%;height:100%;object-fit:cover;}
 .lk-ov{position:absolute;inset:0;background:rgba(5,8,10,0.82);}
@@ -291,7 +291,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 
 
 /* PROFILE SETUP */
-.profile-setup{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;overflow-y:auto;}
+.profile-setup{position:fixed;inset:0;z-index:3000;background:var(--bg);flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;overflow-y:auto;}
 .profile-setup-title{font-family:var(--f);font-weight:800;font-size:28px;color:var(--tx);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;text-align:center;}
 .profile-setup-sub{font-family:var(--fs);font-style:italic;font-size:14px;color:var(--txm);margin-bottom:28px;text-align:center;line-height:1.6;}
 .profile-field{width:100%;max-width:400px;margin-bottom:12px;}
@@ -864,14 +864,7 @@ function fetchWeather(){
 <div id="pane-connect" class="pane">
   <div class="pg-title">Connections</div>
   <div class="pg-sub">Everyone you meet at ABFF · tap a card to expand</div>
-  <div id="mycard-slot">
-  <div id="mycard-empty" style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:16px;margin-bottom:12px;border-top:2px solid var(--pk);text-align:center;display:block;">
-    <div style="font-family:var(--f);font-weight:700;font-size:13px;color:var(--tx);margin-bottom:6px;">Your Card</div>
-    <div style="font-family:var(--f);font-size:11px;color:var(--txm);margin-bottom:12px;">Set up your profile to share your contact info via QR code &mdash; no app needed on their end.</div>
-    <button id="setup-card-btn" style="background:var(--pk);color:white;border:none;border-radius:var(--rs);padding:10px 20px;font-family:var(--f);font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Set up my card</button>
-  </div>
-  <div id="mycard-filled" style="display:none;"></div>
-</div>
+
   <button class="add-btn" onclick="openCM(null)">+ Add someone you met</button>
   <div id="conn-list"></div>
   <div id="conn-empty" class="empty-state"><div class="empty-icon">&#9675;</div><div class="empty-text">Your connections show up here.</div></div>
@@ -931,7 +924,7 @@ function fetchWeather(){
     <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
     <span class="nb-lbl">Schedule</span>
   </button>
-  <button class="nb" id="nb-connect" onclick="showPane('connect','nb-connect');renderMyCard();renderConns();">
+  <button class="nb" id="nb-connect" onclick="showPane('connect','nb-connect');renderConns();">
     <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     <span class="nb-lbl">Connect</span>
   </button>
@@ -1010,21 +1003,7 @@ function fetchWeather(){
   </div>
 
 <!-- PROFILE SETUP SCREEN -->
-<div id="profile-setup" class="profile-setup" style="display:none;">
-  <div style="width:100%;max-width:400px;">
-    <div class="profile-setup-title">Your Card</div>
-    <div class="profile-setup-sub">Set up your profile once. Show your QR code to share your info instantly — no app required on their end.</div>
-    <div class="profile-field"><label>Name *</label><input id="pf-name" type="text" placeholder="Your full name" autocomplete="name"></div>
-    <div class="profile-field"><label>Role / Title</label><input id="pf-role" type="text" placeholder="Director · Producer · Writer..."></div>
-    <div class="profile-field"><label>Company / Project</label><input id="pf-company" type="text" placeholder="Studio, film, or company name"></div>
-    <div class="profile-field"><label>Email</label><input id="pf-email" type="email" placeholder="your@email.com" autocomplete="email"></div>
-    <div class="profile-field"><label>Phone (optional)</label><input id="pf-phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel"></div>
-    <div class="profile-field"><label>Social Handle</label><input id="pf-social" type="text" placeholder="@yourhandle"></div>
-    <div class="profile-field"><label>Website</label><input id="pf-website" type="text" placeholder="yoursite.com"></div>
-    <button class="btn-profile-save" onclick="saveProfile()">Save My Card</button>
-    <button class="btn-profile-skip" onclick="skipProfile()">Skip for now</button>
-  </div>
-</div>
+
 
 <!-- QR CODE MODAL -->
 <div class="qr-backdrop" id="qr-modal" onclick="if(event.target===this)closeQR()">
@@ -1566,7 +1545,7 @@ function renderConns(){
   var setupBtn = document.getElementById('setup-card-btn');
   if (setupBtn) {
     setupBtn.addEventListener('click', function() {
-      showProfileSetup(false);
+showProfileSetup(false);
     });
   }
 });
@@ -1710,7 +1689,7 @@ function toggleFAQ(el){
 
 // Global functions for innerHTML onclick handlers
 function showProfileSetup(prefill) {
-  var setup = document.getElementById('profile-setup');
+var setup = document.getElementById('profile-setup');
   setup.style.display = 'flex';
   if (prefill) {
     var p = getProfile();
