@@ -90,7 +90,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .nb.active svg{stroke:var(--pk);}
 .nb-lbl{font-size:9px;font-weight:700;letter-spacing:0.06em;color:var(--txd);text-transform:uppercase;font-family:var(--f);}
 .nb.active .nb-lbl{color:var(--pk);}
-.content{padding:16px;max-width:680px;margin:0 auto;position:relative;z-index:1;padding-top:90px;}
+.content{padding:16px;padding-top:90px;padding-bottom:120px;max-width:680px;margin:0 auto;position:relative;z-index:1;}
 .pane{display:none;}.pane.active{display:block;}
 .pg-title{font-family:var(--f);font-weight:800;font-size:26px;color:var(--tx);text-transform:uppercase;letter-spacing:0.02em;margin-bottom:2px;margin-top:4px;line-height:1;}
 .pg-sub{font-family:var(--f);font-size:12px;color:var(--txm);margin-bottom:16px;font-weight:500;}
@@ -1596,22 +1596,6 @@ function renderConns(){
 function getProfile() { return gs('ffa_profile', null); }
 function saveProfileData(p) { ss('ffa_profile', p); }
 
-function showProfileSetup(prefill) {
-  var setup = document.getElementById('profile-setup');
-  setup.style.display = 'flex';
-  if (prefill) {
-    var p = getProfile();
-    if (p) {
-      if(p.name) document.getElementById('pf-name').value = p.name;
-      if(p.role) document.getElementById('pf-role').value = p.role;
-      if(p.company) document.getElementById('pf-company').value = p.company;
-      if(p.email) document.getElementById('pf-email').value = p.email;
-      if(p.phone) document.getElementById('pf-phone').value = p.phone;
-      if(p.social) document.getElementById('pf-social').value = p.social;
-      if(p.website) document.getElementById('pf-website').value = p.website;
-    }
-  }
-}
 
 function saveProfile() {
   var name = document.getElementById('pf-name').value.trim();
@@ -1701,6 +1685,26 @@ function toggleFAQ(el){
   var body=el.nextElementSibling;var arr=el.querySelector('.faq-arr');
   var open=body.classList.toggle('open');if(arr)arr.classList.toggle('open',open);
 }
+
+// Global functions for innerHTML onclick handlers
+function showProfileSetup(prefill) {
+  var setup = document.getElementById('profile-setup');
+  setup.style.display = 'flex';
+  if (prefill) {
+    var p = getProfile();
+    if (p) {
+      if(p.name) document.getElementById('pf-name').value = p.name;
+      if(p.role) document.getElementById('pf-role').value = p.role;
+      if(p.company) document.getElementById('pf-company').value = p.company;
+      if(p.email) document.getElementById('pf-email').value = p.email;
+      if(p.phone) document.getElementById('pf-phone').value = p.phone;
+      if(p.social) document.getElementById('pf-social').value = p.social;
+      if(p.website) document.getElementById('pf-website').value = p.website;
+    }
+  }
+}
+
+
 </script>
 </body>
 </html>
