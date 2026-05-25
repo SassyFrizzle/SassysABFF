@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>How to Use — Film Festival Atlas</title>
+  <meta name="description" content="A 7-minute walkthrough for ABFF 2026 attendees. Schedule, connections, looks, notes. Built by @sassyfrizzle.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://festivalatlas.app/how-to.html">
+  <meta property="og:title" content="How to Use Film Festival Atlas — ABFF 2026">
+  <meta property="og:description" content="A 7-minute walkthrough for ABFF 2026 attendees. Schedule, connections, looks, notes. Built by @sassyfrizzle.">
+  <meta property="og:image" content="https://festivalatlas.app/assets/icon.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Use Film Festival Atlas — ABFF 2026">
+  <meta name="twitter:description" content="A 7-minute walkthrough for ABFF 2026 attendees.">
+  <meta name="twitter:image" content="https://festivalatlas.app/assets/icon.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "271f1df03b3343968051ec53b82b25ca"}'></script><!-- End Cloudflare Web Analytics -->
+  <style>
+    :root {
+      --bg:#0A0D0F; --s1:#111518; --s2:#181D21; --s3:#1F252A;
+      --b:rgba(255,255,255,0.07); --bm:rgba(255,255,255,0.14);
+      --pk:#FF3B6B; --pk2:rgba(255,59,107,0.15);
+      --tl:#00E5CC; --tl2:rgba(0,229,204,0.12);
+      --gd:#FFB830; --gd2:rgba(255,184,48,0.12);
+      --tx:#F0EDE8; --txm:#B0ADA8; --txd:#666260;
+      --f:'Syne',-apple-system,sans-serif;
+      --fs:'DM Sans',-apple-system,sans-serif;
+      --r:14px; --rs:8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--tx);
+      font-family: var(--fs);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Top nav ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,13,15,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--b);
+      padding: env(safe-area-inset-top, 0px) 20px 0;
+    }
+    .top-nav-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-brand {
+      font-family: var(--f);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tx);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-brand span {
+      color: var(--pk);
+    }
+    .nav-cta {
+      font-family: var(--f);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--pk);
+      background: var(--pk2);
+      border: 1px solid var(--pk);
+      border-radius: 20px;
+      padding: 5px 14px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+      padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 52px 0 40px;
+      border-bottom: 1px solid var(--b);
+    }
+    .hero-label {
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--pk);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: var(--f);
+      font-size: clamp(32px, 8vw, 52px);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--tx);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--pk);
+    }
+    .hero-sub {
+      font-family: var(--fs);
+      font-size: 15px;
+      color: var(--txm);
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .hero-jump {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .jump-chip {
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--txm);
+      background: var(--s2);
+      border: 1px solid var(--b);
+      border-radius: 20px;
+      padding: 5px 12px;
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .jump-chip:hover { color: var(--tx); border-color: var(--bm); }
+
+    /* ── Steps ── */
+    .steps { padding: 40px 0; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 20px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--b);
+    }
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--pk);
+      padding-top: 4px;
+      white-space: nowrap;
+    }
+
+    .step-body {}
+
+    .step-tag {
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--txd);
+      margin-bottom: 6px;
+    }
+
+    .step h2 {
+      font-family: var(--f);
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 800;
+      color: var(--tx);
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .step-sub {
+      font-family: var(--fs);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--tl);
+      margin-bottom: 14px;
+    }
+
+    .step p {
+      font-family: var(--fs);
+      font-size: 14px;
+      color: var(--txm);
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+    .step p:last-child { margin-bottom: 0; }
+
+    .step-callout {
+      background: var(--s2);
+      border: 1px solid var(--b);
+      border-left: 3px solid var(--pk);
+      border-radius: var(--rs);
+      padding: 12px 16px;
+      margin-top: 14px;
+    }
+    .step-callout p {
+      font-family: var(--fs);
+      font-size: 13px;
+      color: var(--txm);
+      margin: 0;
+    }
+    .step-callout p strong {
+      color: var(--tx);
+      font-weight: 700;
+    }
+
+    /* ── Tab pills (step navigation context) ── */
+    .tab-pill {
+      display: inline-block;
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--tx);
+      background: var(--s3);
+      border: 1px solid var(--bm);
+      border-radius: 6px;
+      padding: 2px 8px;
+      margin: 0 1px;
+      vertical-align: middle;
+    }
+
+    /* ── Pro Tips ── */
+    .pro-tips {
+      padding: 40px 0 0;
+    }
+    .section-label {
+      font-family: var(--f);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gd);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--f);
+      font-size: clamp(22px, 6vw, 32px);
+      font-weight: 800;
+      color: var(--tx);
+      margin-bottom: 28px;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 480px) {
+      .tips-grid { grid-template-columns: 1fr; }
+    }
+
+    .tip-card {
+      background: var(--s2);
+      border: 1px solid var(--b);
+      border-radius: var(--r);
+      padding: 18px 16px;
+    }
+    .tip-num {
+      font-family: var(--f);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--gd);
+      margin-bottom: 6px;
+    }
+    .tip-title {
+      font-family: var(--f);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tx);
+      margin-bottom: 6px;
+    }
+    .tip-body {
+      font-family: var(--fs);
+      font-size: 12px;
+      color: var(--txm);
+      line-height: 1.55;
+    }
+
+    /* ── Sign-off ── */
+    .signoff {
+      margin-top: 52px;
+      padding: 36px 0 0;
+      border-top: 1px solid var(--b);
+      text-align: center;
+    }
+    .signoff-headline {
+      font-family: var(--f);
+      font-size: clamp(24px, 7vw, 40px);
+      font-weight: 800;
+      color: var(--tx);
+      margin-bottom: 6px;
+    }
+    .signoff-sub {
+      font-family: var(--f);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--pk);
+      margin-bottom: 24px;
+    }
+    .signoff-cta {
+      display: inline-block;
+      font-family: var(--f);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--pk);
+      border-radius: 26px;
+      padding: 14px 32px;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 24px 0 8px;
+      text-align: center;
+    }
+    .footer p {
+      font-family: var(--fs);
+      font-size: 11px;
+      color: var(--txd);
+      line-height: 1.8;
+    }
+    .footer a { color: var(--txm); text-decoration: none; }
+    .footer a:hover { color: var(--tx); }
+  </style>
+</head>
+<body>
+
+  <!-- Top nav -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <a href="atlas.html" class="nav-brand">Festival<span>Atlas</span></a>
+      <a href="atlas.html" class="nav-cta">Open the app →</a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-label">Guide · v1.0</div>
+      <h1>How to use<br><em>Film Festival Atlas.</em></h1>
+      <p class="hero-sub">A 7-minute walkthrough. Built for ABFF 2026 attendees who want a system, not another social app. Read top to bottom, or jump to whichever step you need.</p>
+      <div class="hero-jump">
+        <a href="#step-01" class="jump-chip">01 · PIN</a>
+        <a href="#step-02" class="jump-chip">02 · Schedule</a>
+        <a href="#step-03" class="jump-chip">03 · Your Atlas</a>
+        <a href="#step-04" class="jump-chip">04 · Looks</a>
+        <a href="#step-05" class="jump-chip">05 · Connections</a>
+        <a href="#step-06" class="jump-chip">06 · QR Card</a>
+        <a href="#step-07" class="jump-chip">07 · Notes</a>
+      </div>
+    </header>
+
+    <!-- Steps -->
+    <section class="steps">
+
+      <div class="step" id="step-01">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <div class="step-tag">Optional but recommended</div>
+          <h2>Set your PIN</h2>
+          <div class="step-sub">Keep your data private</div>
+          <p>Your atlas is private to your phone — nothing leaves your device. A 4-digit PIN keeps your itinerary, notes, and connections safe if you lose your phone.</p>
+          <p>Set it on the splash screen when you first open the app. You can change or remove it anytime from the <span class="tab-pill">Home</span> tab → <em>Change or remove PIN</em>.</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-02">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <div class="step-tag">Five days, every event</div>
+          <h2>Browse the schedule</h2>
+          <div class="step-sub">Wed May 27 – Sun May 31</div>
+          <p>Hit the <span class="tab-pill">Schedule</span> tab. Five day buttons — Wednesday through Sunday. Every screening, panel, party, and mixer the festival lists is here. Tap a day to dive into its timeline.</p>
+          <p>Tap <strong>Venue &amp; Area Map</strong> at the top of the schedule to open the official festival map in your browser.</p>
+          <div class="step-callout">
+            <p><strong>Always verify</strong> times and locations at abff.com — schedules change, especially in the final days before the festival.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="step-03">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <div class="step-tag">Build your personal itinerary</div>
+          <h2>Add events to your atlas</h2>
+          <div class="step-sub">No FOMO required</div>
+          <p>On any day, tap <strong>+ Add to my atlas</strong> on the events you actually want to attend. Your picks show up in <strong>My Atlas</strong> alongside the times and locations.</p>
+          <p>Skip what doesn't serve you. You can remove events the same way — tap the button again to toggle.</p>
+          <div class="step-callout">
+            <p><strong>Pro move:</strong> Pre-load your whole week before Day 01. Edit down as you go — easier than scrambling mid-day.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="step-04">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <div class="step-tag">Pin each outfit to an event</div>
+          <h2>Plan your looks</h2>
+          <div class="step-sub">Wake up knowing what to wear</div>
+          <p>Open the <span class="tab-pill">Looks</span> tab. Tap <strong>+ Add a look</strong> — give it a name, snap or upload a photo, drop a Pinterest link, then tag it to a specific event you've added.</p>
+          <p>Your looks show up alongside your itinerary so you're never scrambling the morning of. One look, one event. Done.</p>
+          <div class="step-callout">
+            <p><strong>Best time to do this:</strong> The Sunday before the festival. Sit down, tag every outfit. Sleep is the only currency that matters at ABFF.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="step-05">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <div class="step-tag">Names blur. Cards don't.</div>
+          <h2>Log every connection</h2>
+          <div class="step-sub">Five minutes before bed</div>
+          <p>Open the <span class="tab-pill">People</span> tab. Tap <strong>+ Log a new connection</strong> after every meaningful conversation — name, role, where you met, what you talked about.</p>
+          <p>Add a photo, social handles, website, and follow-up notes. Search and find them later when you need to send that email.</p>
+          <div class="step-callout">
+            <p><strong>The ritual:</strong> Five minutes before bed each night, write down everyone you met that day. Future you will weep with gratitude.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="step-06">
+        <div class="step-num">06</div>
+        <div class="step-body">
+          <div class="step-tag">Tap, scan, contact saved</div>
+          <h2>Share your card via QR</h2>
+          <div class="step-sub">No typing. No "what's your IG again."</div>
+          <p>Set up your card in the <span class="tab-pill">Me</span> tab — name, role, handles, website, photo. When you meet someone, hit <strong>Share My Contact</strong>.</p>
+          <p>They point their camera at your screen. Your full contact card saves directly to their phone. One QR. One scan.</p>
+          <div class="step-callout">
+            <p><strong>Set the tone:</strong> Share your card first before you ask for theirs. Removes friction, makes you memorable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" id="step-07">
+        <div class="step-num">07</div>
+        <div class="step-body">
+          <div class="step-tag">The festival brain dump</div>
+          <h2>Notes + packing</h2>
+          <div class="step-sub">Dump it all here</div>
+          <p>The <span class="tab-pill">Looks</span> tab also has a <strong>Notes scratchpad</strong> for random thoughts, follow-ups, restaurant names, the bar where you almost cried — whatever needs to leave your head.</p>
+          <p>The <strong>Packing list</strong> is grouped by category: Wardrobe, Tech, Beauty, Documents. Tick items off as you pack.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Pro Tips -->
+    <section class="pro-tips">
+      <div class="section-label">Bonus</div>
+      <div class="section-title">Pro Tips</div>
+      <div class="tips-grid">
+
+        <div class="tip-card">
+          <div class="tip-num">01</div>
+          <div class="tip-title">Pre-load your week</div>
+          <div class="tip-body">Add every event you might attend before Day 01 lands. Edit down as you go — easier than adding mid-day.</div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-num">02</div>
+          <div class="tip-title">Plan looks the week before</div>
+          <div class="tip-body">Sunday before the festival, sit down and tag every outfit. Sleep is the only currency that matters at ABFF.</div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-num">03</div>
+          <div class="tip-title">Log connections that night</div>
+          <div class="tip-body">Five minutes before bed: write down everyone you met today. Future you will weep with gratitude.</div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-num">04</div>
+          <div class="tip-title">Use the notes scratchpad</div>
+          <div class="tip-body">Random thoughts, restaurant names, follow-ups, the bar where you almost cried — dump it all here.</div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-num">05</div>
+          <div class="tip-title">Verify times at abff.com</div>
+          <div class="tip-body">Schedules change. Always confirm screenings and panels on the official site morning-of.</div>
+        </div>
+
+        <div class="tip-card">
+          <div class="tip-num">06</div>
+          <div class="tip-title">Tap your QR card first</div>
+          <div class="tip-body">When you meet someone, share before you ask for theirs. Sets the tone, removes friction.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sign-off -->
+    <div class="signoff">
+      <div class="signoff-headline">That's it.</div>
+      <div class="signoff-sub">Go run your festival.</div>
+      <a href="atlas.html" class="signoff-cta">Open Film Festival Atlas →</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        Built by <a href="https://the820co.com/portfolio.html" target="_blank">Nicole "Sassy" Harrison</a> · <a href="https://twitter.com/sassyfrizzle" target="_blank">@sassyfrizzle</a><br>
+        Independent. Not affiliated with ABFF. Verify everything at <a href="https://abff.com" target="_blank">abff.com</a>.<br>
+        <a href="atlas.html">festivalatlas.app</a> · © 2026 · Nicole Harrison
+      </p>
+    </footer>
+
+  </div><!-- /page -->
+
+</body>
+</html>
