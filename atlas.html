@@ -432,6 +432,7 @@ input,select,textarea{font-size:16px;}
   <div class="share-card">
     <div class="share-txt">Know someone heading to ABFF? Share the atlas.</div>
     <button class="share-btn" onclick="shareAtlas()">Share Film Festival Atlas</button>
+    <button class="share-btn" style="background:var(--s3);color:var(--txm);border-color:var(--b);margin-top:8px;" onclick="addToHomeScreen()">Add to Home Screen</button>
   </div>
   <div class="faq-wrap">
     <div class="faq-head" onclick="toggleFAQ(this)"><div class="faq-head-title">About this app</div><div class="faq-arr">&#8964;</div></div>
@@ -460,6 +461,17 @@ input,select,textarea{font-size:16px;}
       </div>
       <div style="font-size:16px;color:var(--pk);">→</div>
     </a>
+  </div>
+  <div style="background:var(--s2);border:1px solid var(--b);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;">
+    <div style="font-family:var(--f);font-size:10px;font-weight:700;color:var(--txd);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Atlas Data</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="backupAtlas()" style="flex:1;min-width:140px;background:var(--s3);border:1px solid var(--bm);border-radius:var(--rs);padding:10px 12px;font-family:var(--f);font-size:12px;font-weight:700;color:var(--tx);cursor:pointer;text-align:center;">↓ Back up my Atlas</button>
+      <label style="flex:1;min-width:140px;background:var(--s3);border:1px solid var(--bm);border-radius:var(--rs);padding:10px 12px;font-family:var(--f);font-size:12px;font-weight:700;color:var(--tx);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        ↑ Restore from backup
+        <input type="file" accept=".json" onchange="restoreAtlasFile(this)" style="display:none;">
+      </label>
+    </div>
+    <div style="font-family:var(--f);font-size:10px;color:var(--txd);margin-top:8px;line-height:1.6;">Back up saves all your data as a .json file. Restoring <strong style="color:var(--txm);">replaces your current data</strong> — back up first.</div>
   </div>
   <div style="text-align:center;padding:4px 0 12px;">
     <button onclick="changePinFlow()" style="background:none;border:none;font-family:var(--f);font-size:11px;color:var(--txd);cursor:pointer;text-decoration:underline;">Change or remove PIN</button>
@@ -1365,7 +1377,7 @@ function addFestEvent(btn,day,name,time,loc,mapsUrl){
   var arr=getEv(day);
   if(arr.find(function(e){return e.name===name&&e.isFest;})){btn.textContent='Already added';btn.classList.add('added');return;}
   arr.push({id:Date.now(),name:name,time:time,loc:loc,mapsUrl:mapsUrl||'',isFest:true,btnId:btn.id});
-  saveEv(day,arr);renderUE(day);renderMA();
+  saveEv(day,arr);renderUE(day);renderMA();beacon('add_to_atlas');
   btn.textContent='Added!';btn.classList.add('added');ss('ffa_btn_'+btn.id,'added');
 }
 function restoreAddedBtns(){document.querySelectorAll('.add-small').forEach(function(btn){if(gs('ffa_btn_'+btn.id,'')===('added')){btn.textContent='Added!';btn.classList.add('added');}});}
@@ -1521,7 +1533,7 @@ function saveLM(){
     var idx=arr.findIndex(function(l){return l.id===eLID;});
     if(idx>-1){if(!lPD)entry.photo=arr[idx].photo;arr[idx]=entry;}
   } else {arr.push(entry);}
-  saveLooks(arr);renderLooksFeed();renderMA();closeLM();
+  saveLooks(arr);renderLooksFeed();renderMA();beacon('look_saved');closeLM();
 }
 function deleteLook(id){
   if(!confirm('Remove this look?'))return;
@@ -1654,7 +1666,7 @@ function saveConn(){
     var idx=arr.findIndex(function(c){return c.id===eCID;});
     if(idx>-1){if(!pD)data.photo=arr[idx].photo;arr[idx]=data;}
   } else {arr.unshift(data);}
-  saveConns(arr);renderConns();closeCM();var _nb=document.getElementById('nb-connect');if(_nb){_nb.classList.add('anim-pulse');setTimeout(function(){_nb.classList.remove('anim-pulse');},400);}
+  saveConns(arr);renderConns();closeCM();beacon('connection_saved');var _nb=document.getElementById('nb-connect');if(_nb){_nb.classList.add('anim-pulse');setTimeout(function(){_nb.classList.remove('anim-pulse');},400);}
 }
 function delConn(id){
   if(id==='sassy-seed'){alert("That's Sassy — the person who built this. She stays.");return;}
@@ -1732,6 +1744,64 @@ function renderConns(){
       '</div></div></div>';
   };
   list.innerHTML=regular.map(renderCard).join('')+(seed?renderCard(seed):'');
+}
+
+// ANALYTICS
+var _deferredA2HS=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();_deferredA2HS=e;});
+function beacon(n){
+  try{if(window.cfBeacon)window.cfBeacon('event',{name:n});}catch(e){}
+}
+function addToHomeScreen(){
+  beacon('add_to_homescreen');
+  if(_deferredA2HS){
+    _deferredA2HS.prompt();
+    _deferredA2HS.userChoice.then(function(){_deferredA2HS=null;});
+  } else {
+    alert('Add to your home screen:\n\niPhone · iPad: tap the Share icon ↑ in Safari → "Add to Home Screen"\n\nAndroid: tap the menu ⋮ in Chrome → "Add to Home Screen"');
+  }
+}
+
+function backupAtlas(){
+  var data={};
+  try{
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k&&k.indexOf('ffa_')===0)data[k]=localStorage.getItem(k);
+    }
+  }catch(e){}
+  var json=JSON.stringify(data,null,2);
+  var blob=new Blob([json],{type:'application/json'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;
+  a.download='atlas-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();URL.revokeObjectURL(url);
+}
+
+function restoreAtlasFile(input){
+  var file=input.files[0];if(!file)return;
+  if(!confirm('Restore from backup?\n\nThis will replace your current Atlas data. This cannot be undone.'))
+    {input.value='';return;}
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      var data=JSON.parse(e.target.result);
+      if(typeof data!=='object'||Array.isArray(data)){alert('Invalid backup file.');return;}
+      var keys=[];
+      for(var i=0;i<localStorage.length;i++){
+        var k=localStorage.key(i);
+        if(k&&k.indexOf('ffa_')===0)keys.push(k);
+      }
+      keys.forEach(function(k){localStorage.removeItem(k);});
+      var count=0;
+      Object.keys(data).forEach(function(k){
+        if(k.indexOf('ffa_')===0){try{localStorage.setItem(k,data[k]);count++;}catch(ex){}}
+      });
+      alert('Atlas restored! '+count+' items recovered.');
+      location.reload();
+    }catch(ex){alert('Could not read backup file. Make sure it\u2019s a valid Atlas backup.');}
+  };
+  reader.readAsText(file);
 }
 
 function resetAtlas(){
@@ -1825,7 +1895,7 @@ function showQR(){
   new QRCode(container,{text:v,width:220,height:220,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
   document.getElementById('qr-name').textContent=mc.name;
   document.getElementById('qr-role').textContent=mc.role||'';
-  document.getElementById('qr-modal').classList.add('open');
+  beacon('share_contact');document.getElementById('qr-modal').classList.add('open');
 }
 function closeQR(){
   document.getElementById('qr-modal').classList.remove('open');
