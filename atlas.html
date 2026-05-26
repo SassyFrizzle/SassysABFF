@@ -463,6 +463,8 @@ input,select,textarea{font-size:16px;}
   </div>
   <div style="text-align:center;padding:4px 0 12px;">
     <button onclick="changePinFlow()" style="background:none;border:none;font-family:var(--f);font-size:11px;color:var(--txd);cursor:pointer;text-decoration:underline;">Change or remove PIN</button>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <button onclick="resetAtlas()" style="background:none;border:none;font-family:var(--f);font-size:11px;color:var(--rd);cursor:pointer;text-decoration:underline;">Reset my atlas</button>
   </div>
   <div class="disclaimer"><strong>Disclaimer</strong> &nbsp; Film Festival Atlas is an independent tool created by Nicole "Sassy" Harrison (@sassyfrizzle). Not affiliated with ABFF or any partners. Schedule data from publicly available ABFF sources — always verify at abff.com. Photos licensed via Adobe Stock. © 2026 Nicole "Sassy" Harrison. All rights reserved.</div>
 </div>
@@ -1350,12 +1352,19 @@ function renderPackCustom(){
 function toggleSug(head){var body=head.nextElementSibling;var arr=head.querySelector('.sg-arr');var open=body.classList.toggle('open');if(arr)arr.classList.toggle('open',open);}
 
 // EVENTS
-function getEv(day){return gs('ffa_ev_'+day,[]);}
+function getEv(day){
+  var v=gs('ffa_ev_'+day,[]);
+  if(!Array.isArray(v)){
+    try{localStorage.removeItem('ffa_ev_'+day);}catch(e){}
+    return [];
+  }
+  return v.filter(function(e){return e&&e.id!=null&&typeof e.name==='string';});
+}
 function saveEv(day,arr){ss('ffa_ev_'+day,arr);}
 function addFestEvent(btn,day,name,time,loc,mapsUrl){
   var arr=getEv(day);
   if(arr.find(function(e){return e.name===name&&e.isFest;})){btn.textContent='Already added';btn.classList.add('added');return;}
-  arr.push({id:Date.now(),name:name,time:time,loc:loc,mapsUrl:mapsUrl||'',isFest:true});
+  arr.push({id:Date.now(),name:name,time:time,loc:loc,mapsUrl:mapsUrl||'',isFest:true,btnId:btn.id});
   saveEv(day,arr);renderUE(day);renderMA();
   btn.textContent='Added!';btn.classList.add('added');ss('ffa_btn_'+btn.id,'added');
 }
@@ -1367,8 +1376,19 @@ function saveEv2(){
   var ev={id:Date.now(),name:name,time:(document.getElementById('et').value||'').trim(),loc:(document.getElementById('el').value||'').trim(),notes:(document.getElementById('eno').value||'').trim(),mapsUrl:'',isFest:false};
   var arr=getEv(cED);arr.push(ev);saveEv(cED,arr);renderUE(cED);closeEM();var _nb2=document.getElementById('nb-myatlas');if(_nb2){_nb2.classList.add('anim-pulse');setTimeout(function(){_nb2.classList.remove('anim-pulse');},400);}
 }
-function delEv(day,id){saveEv(day,getEv(day).filter(function(e){return e.id!==id;}));renderUE(day);renderMA();}
+function delEv(day,id){
+  var arr=getEv(day);
+  var ev=arr.find(function(e){return e.id===id;});
+  saveEv(day,arr.filter(function(e){return e.id!==id;}));
+  renderUE(day);renderMA();
+  if(ev&&ev.btnId){
+    var btn=document.getElementById(ev.btnId);
+    if(btn){btn.textContent='+ Add to my atlas';btn.classList.remove('added');}
+    ss('ffa_btn_'+ev.btnId,'');
+  }
+}
 function renderUE(day){
+  try{
   var arr=getEv(day);var el=document.getElementById('ue-'+day);if(!el)return;
   el.innerHTML=arr.map(function(e){
     return '<div class="slot"><div class="dot '+(e.isFest?'go':'mine')+'"></div><div class="sc '+(e.isFest?'fest-added':'user-added')+'">'+
@@ -1378,12 +1398,14 @@ function renderUE(day){
       '<button onclick="delEv(\''+day+'\','+e.id+')" class="rm-btn">Remove</button>'+
       '</div></div>';
   }).join('');
+  }catch(e){var el2=document.getElementById('ue-'+day);if(el2)el2.innerHTML='';}
 }
 function renderAllUE(){DAYS.forEach(renderUE);}
 
 // MY ATLAS
 function renderMA(){
   var el=document.getElementById('ma-ct');if(!el)return;
+  try{
   var hasAny=false;
   var output=DAYS.map(function(day){
     var arr=getEv(day);
@@ -1429,6 +1451,9 @@ function renderMA(){
     el.innerHTML='<div class="empty-state"><div class="empty-icon">&#9679;</div><div class="empty-text">Browse the schedule and add events to build your atlas.</div></div>';
   } else {
     el.innerHTML=output;
+  }
+  }catch(e){
+    el.innerHTML='<div class="empty-state"><div class="empty-icon">&#9679;</div><div class="empty-text">Unable to load atlas — tap Reset in Settings if this persists.</div></div>';
   }
 }
 
@@ -1707,6 +1732,19 @@ function renderConns(){
       '</div></div></div>';
   };
   list.innerHTML=regular.map(renderCard).join('')+(seed?renderCard(seed):'');
+}
+
+function resetAtlas(){
+  if(!confirm('RESET MY ATLAS\n\nThis will permanently erase everything \u2014 your schedule, connections, looks, notes, and all settings.\n\nThis cannot be undone. Continue?'))return;
+  try{
+    var keys=[];
+    for(var i=0;i<localStorage.length;i++){
+      var k=localStorage.key(i);
+      if(k&&k.indexOf('ffa_')===0)keys.push(k);
+    }
+    keys.forEach(function(k){localStorage.removeItem(k);});
+  }catch(e){}
+  location.reload();
 }
 
 function changePinFlow(){
