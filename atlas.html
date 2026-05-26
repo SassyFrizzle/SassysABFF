@@ -156,7 +156,7 @@ body{font-family:var(--f);background:var(--bg);color:var(--tx);min-height:100vh;
 .sc.swim{border-left:2px solid var(--tl);}
 .sc.user-added{border-left:2px solid var(--tl);background:var(--tl2);}
 .sc.fest-added{border-left:2px solid var(--gr);}
-.st{font-size:9px;font-weight:700;color:var(--txd);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;font-family:var(--f);}
+.st{font-size:11px;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:2px;font-family:var(--f);}
 .sn{font-size:13px;font-weight:600;color:var(--tx);font-family:var(--f);}
 .sv{font-family:var(--f);font-size:11px;color:var(--txm);margin-top:2px;}
 .dir-btn{display:inline-flex;align-items:center;gap:4px;background:var(--tl2);border:1px solid rgba(0,229,204,0.2);border-radius:6px;padding:4px 10px;font-size:10px;font-weight:700;color:var(--tl);text-decoration:none;margin-top:6px;font-family:var(--f);letter-spacing:0.04em;text-transform:uppercase;}
@@ -383,11 +383,11 @@ input,select,textarea{font-size:16px;}
   <div class="header-top">
     <div><div class="h-title">Film Festival Atlas <span class="pill" style="background:var(--pk2);color:var(--pk);font-size:8px;vertical-align:middle;margin-left:4px;">BETA</span></div><div class="h-name" id="app-greet"></div></div>
     <div class="w-strip">
-      <div class="w-item"><div class="w-day">Wed</div><div class="w-temp">81°</div></div>
-      <div class="w-item"><div class="w-day">Thu</div><div class="w-temp">85°</div><div class="w-rain">rain</div></div>
-      <div class="w-item"><div class="w-day">Fri</div><div class="w-temp">86°</div></div>
-      <div class="w-item"><div class="w-day">Sat</div><div class="w-temp">86°</div></div>
-      <div class="w-item"><div class="w-day">Sun</div><div class="w-temp">85°</div></div>
+      <div class="w-item"><div class="w-day">Wed</div><div class="w-temp" id="wtemp-wed">81°</div><div class="w-rain" id="wrain-wed" style="display:none"></div></div>
+      <div class="w-item"><div class="w-day">Thu</div><div class="w-temp" id="wtemp-thu">85°</div><div class="w-rain" id="wrain-thu">rain</div></div>
+      <div class="w-item"><div class="w-day">Fri</div><div class="w-temp" id="wtemp-fri">86°</div><div class="w-rain" id="wrain-fri" style="display:none"></div></div>
+      <div class="w-item"><div class="w-day">Sat</div><div class="w-temp" id="wtemp-sat">86°</div><div class="w-rain" id="wrain-sat" style="display:none"></div></div>
+      <div class="w-item"><div class="w-day">Sun</div><div class="w-temp" id="wtemp-sun">85°</div><div class="w-rain" id="wrain-sun" style="display:none"></div></div>
     </div>
   </div>
 </div>
@@ -523,6 +523,7 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-wed-2" onclick="addFestEvent(this,&quot;wed&quot;,&quot;Voices of Culture Block #2&quot;,&quot;4:25–6:10 PM&quot;,&quot;Convention Center Theater #2&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
     </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">BERTHA · Bid · Buttercup Pudding Pie · JOHN · This Is Private · TIGUERONAS</div></div></div>
     <div class="slot"><div class="dot opt"></div><div class="sc opt">
       <div class="st">2:00 PM · O Cinema</div>
       <div class="sn">ATHENA A.I. <span class="pill p-tl">Screening</span></div>
@@ -759,7 +760,7 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-fri-10" onclick="addFestEvent(this,&quot;fri&quot;,&quot;Voices of Culture Block #3&quot;,&quot;8:00–9:45 PM&quot;,&quot;Convention Center Theater #1&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
     </div></div>
-    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">Age Of Quorum · Fairytales · 500 Seconds To Tell You · Intergalactic Ingunée · Killer Of Men · Peace by Piece</div></div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">Age Of Quorum · Fairytales · 500 Seconds To Tell You · Intergalactic Ingenue · Killer Of Men · Peace by Piece</div></div></div>
     <div class="slot"><div class="dot opt"></div><div class="sc opt">
       <div class="st">8:45–10:15 PM · Conv. Center Theater #2</div>
       <div class="sn">Voices of Culture Block #4 <span class="pill p-tl">Screening</span></div>
@@ -794,6 +795,7 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-sat-0" onclick="addFestEvent(this,&quot;sat&quot;,&quot;Voices of Culture Block #5&quot;,&quot;10:30 AM–12:00 PM&quot;,&quot;Convention Center Theater #1&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
     </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">The Checklist · I Got My Brother · If Only You Knew · Iku Aka · Keep My Brother</div></div></div>
     <div class="slot"><div class="dot opt"></div><div class="sc opt">
       <div class="st">10:30 AM–12:20 PM · Conv. Center Theater #2</div>
       <div class="sn">Voices of Culture Block #6 <span class="pill p-tl">Screening</span></div>
@@ -801,6 +803,7 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-sat-1" onclick="addFestEvent(this,&quot;sat&quot;,&quot;Voices of Culture Block #6&quot;,&quot;10:30 AM–12:20 PM&quot;,&quot;Convention Center Theater #2&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
     </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">AFUFU · Beach Day · Mini Me · Touching · Vengeance Is All I Have · When They're Gone</div></div></div>
     <div class="slot"><div class="dot opt"></div><div class="sc opt">
       <div class="st">11:00 AM · O Cinema</div>
       <div class="sn">Basement People and Q&A <span class="pill p-gr">Screening</span></div>
@@ -836,6 +839,14 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7912,-80.1344" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-sat-6" onclick="addFestEvent(this,&quot;sat&quot;,&quot;Iyanla Vanzant: Behind the Inside Fix&quot;,&quot;TBD&quot;,&quot;New World Center&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7912,-80.1344&quot;)">+ Add to my atlas</button>
     </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt">
+      <div class="st">TBD · Conv. Center Theater #1</div>
+      <div class="sn">Voices of Culture Block #7 <span class="pill p-tl">Screening</span></div>
+      <div class="sv">Convention Center · Theater #1 · Verify time at abff.com</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
+      <button class="add-small" id="btn-sat-9" onclick="addFestEvent(this,&quot;sat&quot;,&quot;Voices of Culture Block #7&quot;,&quot;TBD&quot;,&quot;Convention Center Theater #1&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
+    </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">Cutoff · H.P.V. · HOMEbirth · The Last Wish · Pan Gyul · Yellow Pages</div></div></div>
     <div class="slot"><div class="dot go"></div><div class="sc go">
       <div class="st">8:30 PM · NWC Performance Hall</div>
       <div class="sn">Best of the ABFF Awards Ceremony <span class="pill p-gr">Festival event</span></div>
@@ -1018,7 +1029,7 @@ input,select,textarea{font-size:16px;}
   <div class="modal">
     <div class="modal-title" id="trip-field-label">Arrival</div>
     <label>Details</label>
-    <input type="text" id="trip-input" placeholder="Delta 2888 · DCA 2:47pm → MIA 5:37pm · Catalina Hotel" maxlength="80">
+    <input type="text" id="trip-input" placeholder="e.g. AA 123 · DCA 7:00am → MIA 10:15am · Hotel check-in 3pm" maxlength="80">
     <div style="font-family:var(--f);font-size:11px;color:var(--txd);margin-top:8px;">Flight number, times, hotel name, check-in — whatever's useful to you.</div>
     <div class="modal-btns"><button class="btn-cancel" onclick="closeTripModal()">Cancel</button><button class="btn-save" onclick="saveTripModal()">Save</button></div>
   </div>
@@ -1163,6 +1174,36 @@ function launchApp(){
   renderHomeGreeting();
   renderToday();
   updateHeaderOffset();
+  renderMA();
+  fetchWeather();
+}
+
+function fetchWeather(){
+  var dayMap={'2026-05-27':'wed','2026-05-28':'thu','2026-05-29':'fri','2026-05-30':'sat','2026-05-31':'sun'};
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=25.7617&longitude=-80.1918'
+    +'&daily=temperature_2m_max,precipitation_probability_max'
+    +'&temperature_unit=fahrenheit&timezone=America%2FNew_York'
+    +'&start_date=2026-05-27&end_date=2026-05-31')
+  .then(function(r){return r.json();})
+  .then(function(d){
+    var dates=d.daily.time;
+    var temps=d.daily.temperature_2m_max;
+    var precip=d.daily.precipitation_probability_max;
+    dates.forEach(function(date,i){
+      var key=dayMap[date];if(!key)return;
+      var te=document.getElementById('wtemp-'+key);
+      var ra=document.getElementById('wrain-'+key);
+      if(te&&temps[i]!=null)te.textContent=Math.round(temps[i])+'°';
+      if(ra){
+        if(precip[i]!=null&&precip[i]>=40){
+          ra.style.display='';ra.textContent=precip[i]+'% rain';
+        } else {
+          ra.style.display='none';
+        }
+      }
+    });
+  })
+  .catch(function(){});// silently keep hardcoded fallback on error
 }
 
 function updateHeaderOffset(){
@@ -1265,6 +1306,7 @@ function openTripModal(field){
   document.getElementById('trip-modal').classList.add('open');
   document.getElementById('trip-field-label').textContent=field==='arrival'?'Arrival':'Departure';
   document.getElementById('trip-input').value=t[field]||'';
+  document.getElementById('trip-input').placeholder=(field==='arrival'?'e.g. AA 123 \xb7 DCA 7:00am \u2192 MIA 10:15am \xb7 Hotel check-in 3pm':'e.g. AA 456 \xb7 MIA 2:00pm \u2192 DCA 5:30pm \xb7 Checkout 11am');
   document.getElementById('trip-modal').dataset.field=field;
 }
 function saveTripModal(){
@@ -1314,7 +1356,7 @@ function addFestEvent(btn,day,name,time,loc,mapsUrl){
   var arr=getEv(day);
   if(arr.find(function(e){return e.name===name&&e.isFest;})){btn.textContent='Already added';btn.classList.add('added');return;}
   arr.push({id:Date.now(),name:name,time:time,loc:loc,mapsUrl:mapsUrl||'',isFest:true});
-  saveEv(day,arr);renderUE(day);
+  saveEv(day,arr);renderUE(day);renderMA();
   btn.textContent='Added!';btn.classList.add('added');ss('ffa_btn_'+btn.id,'added');
 }
 function restoreAddedBtns(){document.querySelectorAll('.add-small').forEach(function(btn){if(gs('ffa_btn_'+btn.id,'')===('added')){btn.textContent='Added!';btn.classList.add('added');}});}
