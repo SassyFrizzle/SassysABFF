@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "271f1df03b3343968051ec53b82b25ca"}'></script><!-- End Cloudflare Web Analytics -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -303,6 +302,7 @@ input,select,textarea{font-size:16px;}
 <meta name="twitter:title" content="Film Festival Atlas — ABFF 2026">
 <meta name="twitter:description" content="Plan your ABFF 2026 experience. Schedule, connections, looks, notes. Built by @sassyfrizzle.">
 <meta name="twitter:image" content="https://festivalatlas.app/assets/icon.webp">
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "271f1df03b3343968051ec53b82b25ca"}'></script><!-- End Cloudflare Web Analytics -->
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
@@ -752,21 +752,22 @@ input,select,textarea{font-size:16px;}
       <a href="https://www.google.com/maps/dir/?api=1&destination=25.7912,-80.1344" target="_blank" class="dir-btn">Directions</a>
       <button class="add-small" id="btn-fri-8" onclick="addFestEvent(this,&quot;fri&quot;,&quot;Screening Under the Stars: Brown Sugar&quot;,&quot;8:00–10:00 PM&quot;,&quot;New World Center Outside Wall&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7912,-80.1344&quot;)">+ Add to my atlas</button>
     </div></div>
-    <div class="slot"><div class="dot opt">
-  <div class="st">8:00–9:45 PM · Convention Center · Theater #1</div>
-  <div class="sn">Voices of Culture Block #3</div>
-  <div class="sv">Age Of Quorum, Fairytales, 500 Seconds To Tell You, Intergalactic Ingenue, Killer Of Men, Peace by Piece</div>
-  <a href="https://www.google.com/maps/search/?api=1&query=Miami+Beach+Convention+Center" target="_blank" class="dir-link">Get Directions</a>
-  <button class="add-small" id="btn-fri-voc3">+ Add to my atlas</button>
-</div></div>
-<div class="slot"><div class="dot opt">
-  <div class="st">8:45–10:15 PM · Convention Center · Theater #2</div>
-  <div class="sn">Voices of Culture Block #4</div>
-  <div class="sv">The Day You Find Your Name, Echoes Beneath the Hill, Ella, EL TIGUERE</div>
-  <a href="https://www.google.com/maps/search/?api=1&query=Miami+Beach+Convention+Center" target="_blank" class="dir-link">Get Directions</a>
-  <button class="add-small" id="btn-fri-voc4">+ Add to my atlas</button>
-</div></div>
-
+    <div class="slot"><div class="dot opt"></div><div class="sc opt">
+      <div class="st">8:00–9:45 PM · Conv. Center Theater #1</div>
+      <div class="sn">Voices of Culture Block #3 <span class="pill p-tl">Screening</span></div>
+      <div class="sv">Convention Center · Theater #1</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
+      <button class="add-small" id="btn-fri-10" onclick="addFestEvent(this,&quot;fri&quot;,&quot;Voices of Culture Block #3&quot;,&quot;8:00–9:45 PM&quot;,&quot;Convention Center Theater #1&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
+    </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">Age Of Quorum · Fairytales · 500 Seconds To Tell You · Intergalactic Ingunée · Killer Of Men · Peace by Piece</div></div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt">
+      <div class="st">8:45–10:15 PM · Conv. Center Theater #2</div>
+      <div class="sn">Voices of Culture Block #4 <span class="pill p-tl">Screening</span></div>
+      <div class="sv">Convention Center · Theater #2</div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329" target="_blank" class="dir-btn">Directions</a>
+      <button class="add-small" id="btn-fri-11" onclick="addFestEvent(this,&quot;fri&quot;,&quot;Voices of Culture Block #4&quot;,&quot;8:45–10:15 PM&quot;,&quot;Convention Center Theater #2&quot;,&quot;https://www.google.com/maps/dir/?api=1&destination=25.7960,-80.1329&quot;)">+ Add to my atlas</button>
+    </div></div>
+    <div class="slot"><div class="dot opt"></div><div class="sc opt"><div class="sn" style="font-size:11px;color:var(--txm);">The Day You Find Your Name · Echoes Beneath the Hill · Ella · EL TIGUERE</div></div></div>
     <div class="slot"><div class="dot go"></div><div class="sc go">
       <div class="st">9:30 PM · NWC Performance Hall</div>
       <div class="sn">Hey Ladies Comedy Experience <span class="pill p-gr">Festival event</span></div>
